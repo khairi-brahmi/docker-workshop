@@ -1,4 +1,4 @@
-name: Deploy Dockerized Flask App - Docker Workshop
+name: Check Dockerized Flask App - Docker Workshop
 
 on:
   push:

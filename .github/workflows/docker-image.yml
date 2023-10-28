@@ -34,4 +34,4 @@ jobs:
     - name: Run pytest tests
       run: |
         docker-compose exec -T web pip3 install pytest
-        docker-compose exec -T web pytest
+        docker-compose exec -T web pytest # -T tells Docker Compose not to allocate a TTY ( interactive terminal)

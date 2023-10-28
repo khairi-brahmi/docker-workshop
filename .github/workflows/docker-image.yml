@@ -20,10 +20,12 @@ jobs:
     - name: Remove Docker volumes
       run: |
         docker volume rm $(docker volume ls -q)
+      continue-on-error: true
         
     - name: Remove Docker images
       run: |
         docker rmi $(docker images -q)
+      continue-on-error: true
 
     - name: Run Docker Compose
       run: |

@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  web:
+    build: 
+      context: .
+    ports:
+      - '8080:5000'
+# The left side, 8080, is the port on the host machine. When you access the Python application from the web browser, you would use http://localhost:8080 to reach it.
+# The right side, 5000, is the port where the Python application inside the container is listening.
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - dbdata:/var/lib/mysql
+volumes:
+  dbdata:

@@ -1,0 +1,34 @@
+name: Deploy Dockerized Flask App - Docker Workshop
+
+on:
+  push:
+    branches:
+      - Development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Stop and remove Docker containers
+      run: |
+        docker-compose down
+
+    - name: Remove Docker volumes
+      run: |
+        docker volume rm $(docker volume ls -q)
+        
+    - name: Remove Docker images
+      run: |
+        docker rmi $(docker images -q)
+
+    - name: Run Docker Compose
+      run: |
+        docker-compose up -d
+        
+    - name: Run pytest tests
+      run: |
+        docker-compose exec web pytest test_app.py
